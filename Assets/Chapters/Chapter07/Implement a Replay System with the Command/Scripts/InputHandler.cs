@@ -13,7 +13,7 @@ namespace Chapter.Command
         void Start()
         {
             _invoker = gameObject.AddComponent<Invoker>();
-            _bikeController = FindObjectOfType<BikeController>();
+            _bikeController = FindFirstObjectByType<BikeController>();
 
             _buttonA = new TurnLeft(_bikeController);
             _buttonD = new TurnRight(_bikeController);

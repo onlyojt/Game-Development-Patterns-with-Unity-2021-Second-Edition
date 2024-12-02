@@ -21,7 +21,7 @@ namespace FPP.Scripts.Input
         void Start()
         {
             _invoker = gameObject.AddComponent<Invoker>();
-            _bikeController = FindObjectOfType<BikeController>();
+            _bikeController = FindFirstObjectByType<BikeController>();
 
             if (_bikeController)
             {

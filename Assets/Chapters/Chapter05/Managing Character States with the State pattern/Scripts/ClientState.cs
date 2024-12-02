@@ -10,7 +10,7 @@ namespace Chapter.State
         {
             _bikeController =
                 (BikeController)
-                FindObjectOfType(typeof(BikeController));
+                FindFirstObjectByType(typeof(BikeController));
         }
         
         void OnGUI() 

@@ -9,7 +9,7 @@ namespace FPP.Scripts.Tests.Gym
     
         void Start()
         {
-            _bikeEngine = (BikeEngine) FindObjectOfType(typeof(BikeEngine));
+            _bikeEngine = (BikeEngine) FindFirstObjectByType(typeof(BikeEngine));
         }
         
         void OnGUI()

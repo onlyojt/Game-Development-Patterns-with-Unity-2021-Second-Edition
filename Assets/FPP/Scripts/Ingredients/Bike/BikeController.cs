@@ -94,16 +94,16 @@ namespace FPP.Scripts.Ingredients.Bike
 
         private void InitBikeComponents()
         {
-            BikeEngine = (BikeEngine) FindObjectOfType(typeof(BikeEngine));
+            BikeEngine = (BikeEngine)FindFirstObjectByType(typeof(BikeEngine));
             
             if (BikeEngine)
                 BikeEngine.BikeController = this; // TODO: Let's decouple this two components for explicitely referencing each other
             
-            BikeShield = (BikeShield) FindObjectOfType(typeof(BikeShield));
-            BikeWeapon = (BikeWeapon) FindObjectOfType(typeof(BikeWeapon));
-            BikeSensor = (BikeSensor) FindObjectOfType(typeof(BikeSensor));
-            FollowCamera = (FollowCamera) FindObjectOfType(typeof(FollowCamera));
-            TrackController = (TrackController) FindObjectOfType(typeof(TrackController));
+            BikeShield = (BikeShield)FindFirstObjectByType(typeof(BikeShield));
+            BikeWeapon = (BikeWeapon)FindFirstObjectByType(typeof(BikeWeapon));
+            BikeSensor = (BikeSensor)FindFirstObjectByType(typeof(BikeSensor));
+            FollowCamera = (FollowCamera)FindFirstObjectByType(typeof(FollowCamera));
+            TrackController = (TrackController)FindFirstObjectByType(typeof(TrackController));
             
             _hud = Instantiate(Resources.Load("HUD", typeof(GameObject))) as GameObject;
             if (_hud) 

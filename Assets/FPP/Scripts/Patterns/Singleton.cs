@@ -12,7 +12,7 @@ namespace FPP.Scripts.Patterns
             {
                 if (m_Instance == null)
                 {
-                    m_Instance = FindObjectOfType<T>();
+                    m_Instance = FindFirstObjectByType<T>();
 
                     if (m_Instance == null)
                     {

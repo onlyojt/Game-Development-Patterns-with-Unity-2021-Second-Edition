@@ -15,7 +15,7 @@ namespace FPP.Scripts.Input
 
         private void Start()
         {
-            _bikeController = FindObjectOfType<BikeController>();
+            _bikeController = FindFirstObjectByType<BikeController>();
         }
 
         private void LoadFile()

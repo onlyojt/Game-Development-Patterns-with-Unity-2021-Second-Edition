@@ -9,8 +9,8 @@ namespace Chapter.Decorator
 
         void Start() {
             _bikeWeapon = 
-                (BikeWeapon) 
-                FindObjectOfType(typeof(BikeWeapon));
+                (BikeWeapon)
+                FindFirstObjectByType(typeof(BikeWeapon));
         }
 
         void OnGUI() 

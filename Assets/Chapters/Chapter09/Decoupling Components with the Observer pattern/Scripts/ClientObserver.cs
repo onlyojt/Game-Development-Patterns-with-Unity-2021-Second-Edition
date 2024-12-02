@@ -9,8 +9,8 @@ namespace Chapter.Observer
         void Start()
         {
             _bikeController = 
-                (BikeController) 
-                FindObjectOfType(typeof(BikeController));
+                (BikeController)
+                FindFirstObjectByType(typeof(BikeController));
         }
         
         void OnGUI()

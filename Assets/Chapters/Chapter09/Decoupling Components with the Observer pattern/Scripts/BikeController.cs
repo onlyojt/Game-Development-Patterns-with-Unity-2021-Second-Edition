@@ -26,8 +26,8 @@ namespace Chapter.Observer
                 gameObject.AddComponent<HUDController>();
             
             _cameraController = 
-                (CameraController) 
-                FindObjectOfType(typeof(CameraController));
+                (CameraController)
+                FindFirstObjectByType(typeof(CameraController));
         }
 
         private void Start()
