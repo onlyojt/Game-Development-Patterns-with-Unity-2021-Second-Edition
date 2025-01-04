@@ -75,14 +75,10 @@ namespace Chapter.Decorator
         
         public void Decorate() {
             if (mainAttachment && !secondaryAttachment)
-                _weapon = 
-                    new WeaponDecorator(_weapon, mainAttachment);
+                _weapon = new WeaponDecorator(_weapon, mainAttachment);
 
             if (mainAttachment && secondaryAttachment)
-                _weapon = 
-                    new WeaponDecorator(
-                        new WeaponDecorator(
-                            _weapon, mainAttachment), secondaryAttachment);
+                _weapon = new WeaponDecorator(new WeaponDecorator(_weapon, mainAttachment), secondaryAttachment);
 
             _isDecorated = !_isDecorated;
         }

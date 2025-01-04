@@ -63,6 +63,7 @@ namespace FPP.Scripts.Ingredients.Enemies.Drone
         
         private void ApplyAttackStrategy() // TODO: The appplication of strategies should not be random as it will cause issues with the replay system
         {
+            // 전략패턴 적용
             _strategyComponents.Add(gameObject.AddComponent<WeavingManeuver>());
             _strategyComponents.Add(gameObject.AddComponent<BoppingManeuver>());
             _strategyComponents.Add(gameObject.AddComponent<FallbackManeuver>());

@@ -75,7 +75,7 @@ namespace FPP.Scripts.UI.HUD
             statusField.text = "REPLAY";
         }
 
-        private void DisplayPauseMenu()
+        private void DisplayPauseMenu() // RaceEventType.PAUSE 이벤트 발생시 pauseMenu 활성화
         {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
             raceTimer.GetComponent<RaceTimer>().PauseTimer();
@@ -115,7 +115,7 @@ namespace FPP.Scripts.UI.HUD
                 statusField.text = "GAME OVER";
         }
         
-        public override void Notify(Subject subject)
+        public override void Notify(Subject subject) // BikeController부터 이벤트 발생
         {
             if (!_bikeController)
                 _bikeController = subject.GetComponent<BikeController>();
@@ -124,17 +124,17 @@ namespace FPP.Scripts.UI.HUD
                 UpdateShieldHealthMeter(_bikeController.BikeShield.currentStrength);
         }
 
-        public void RestartRace()
+        public void RestartRace() // pauseMenu 활성화 다시시작 버튼 액션 핸들러
         {
             RaceEventBus.Publish(RaceEventType.RESTART);
         }
         
-        public void StartReplay()
+        public void StartReplay() // pauseMenu 활성화 되면 리플레이 버튼 액션 핸들러
         {
             RaceEventBus.Publish(RaceEventType.REPLAY);
         }
 
-        public void EndRace()
+        public void EndRace() // pauseMenu 활성화 되면 종료 버튼 액션 핸들러
         {
             RaceEventBus.Publish(RaceEventType.END);
         }

@@ -6,11 +6,11 @@ namespace FPP.Scripts.Ingredients.Bike.Elements
     public class BikeWeapon : MonoBehaviour
     {
         public bool isDebugOn;
-        public WeaponConfiguration weaponConfig;
-        public WeaponAttachment mainAttachment;
-        public WeaponAttachment secondaryAttachment;
+        public WeaponConfiguration weaponConfig; // 기본무기 설정값 (스크립터블 오브젝트)
+        public WeaponAttachment mainAttachment; // 첫번쩨 무기 증가값 (스크립터블 오브젝트)
+        public WeaponAttachment secondaryAttachment; // 두번째 무기 증가값 (스크립터블 오브젝트)
 
-        private IWeapon _weapon;
+        private IWeapon _weapon; // 데커레이터 패턴 인터페이스
         private float _beamTimer;
         private LineRenderer _beam;
         private Vector3 _startPosition;
@@ -48,7 +48,7 @@ namespace FPP.Scripts.Ingredients.Bike.Elements
 
         private void InitWeapon()
         {
-            _weapon = new Weapon(weaponConfig);
+            _weapon = new Weapon(weaponConfig); // 기본무기 세팅
             DecorateWeapon();
             InitBeam();
         }
@@ -66,11 +66,13 @@ namespace FPP.Scripts.Ingredients.Bike.Elements
 
         private void DecorateWeapon()
         {
+            // 기존 무기에 증가값을 가지고 있는 스크립터블 오브젝트
             if (mainAttachment && !secondaryAttachment)
                 _weapon = new WeaponDecorator(_weapon, mainAttachment);
 
+            // 기존무기를 첫번째 증가값을 적용, 두번째는 스크립터블 오브젝트 설정값
             if (mainAttachment && secondaryAttachment)
-                _weapon = new WeaponDecorator(new WeaponDecorator(_weapon, mainAttachment), secondaryAttachment);
+                _weapon = new WeaponDecorator(new WeaponDecorator(_weapon, mainAttachment), secondaryAttachment); 
         }
     }
 }

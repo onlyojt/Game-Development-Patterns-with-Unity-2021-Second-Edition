@@ -8,7 +8,7 @@ using FPP.Scripts.Ingredients.Track;
 
 namespace FPP.Scripts.Controllers
 {
-    public class TrackController : Observer
+    public class TrackController : Observer // 트랙 세그먼트별로 트랙을 구성
     {
         private float _trackSpeed;
         private bool _isTrackLoaded;
@@ -29,7 +29,7 @@ namespace FPP.Scripts.Controllers
         [SerializeField]
         private int railAmount; // TODO: This should be customizable thru a property in RaceTrack scriptable objects.
         
-        [Tooltip("Starting line rail number")] 
+        [Tooltip("Starting line rail number")] // 게임 시작때 레일 설정
         [SerializeField]
         private int startingRail;
         
@@ -40,7 +40,7 @@ namespace FPP.Scripts.Controllers
         
         [Tooltip("Initial amount of segment to load at start")] 
         [SerializeField]
-        private int initialSegmentAmount;
+        private int initialSegmentAmount; // 한번에 로드할 세그먼트 수
 
         [Tooltip("Amount of incremental segments to load at run")] 
         [SerializeField]
@@ -48,6 +48,7 @@ namespace FPP.Scripts.Controllers
         
         private void Update()
         {
+            // 트랙을 뒤로 이동시켜 플레이어가 주행중임을 표현
             if (_segmentParent)
                 _segmentParent.transform.Translate(Vector3.back * (_trackSpeed * Time.deltaTime));
         }
@@ -77,14 +78,14 @@ namespace FPP.Scripts.Controllers
 
         public void SpawnTrack(int trackIndex, bool isReplayEnabled)
         {
-            _currentActiveRail = startingRail;
+            _currentActiveRail = startingRail; // 4개의 레일중 현재 레일 설정
             
             _isReplayEnabled = isReplayEnabled;
             
             if (_currentTrackIndex <= trackIndex)
             {
                 _currentTrackIndex = trackIndex;
-                ReserveTrackSegments(_currentTrackIndex);
+                ReserveTrackSegments(_currentTrackIndex); // 트랙의 세그먼트들
             }
 
             SpawnTrack();
@@ -92,35 +93,39 @@ namespace FPP.Scripts.Controllers
         
         private void ReserveTrackSegments(int trackIndex)
         {
+            // 트랙의 세그먼트들
             _segments = Enumerable.Reverse(tracks[trackIndex].segments).ToList();
         }
-        
+
+        // BaseTrack의 Segments를 부모로 
         private void SpawnTrack()
         {
             if (!_isReplayEnabled)
             {
                 Destroy(_trackParent);
-
+                
                 _trackParent = Instantiate(Resources.Load("BaseTrack", typeof(GameObject))) as GameObject;
 
                 if (_trackParent != null)
-                    _segmentParent = _trackParent.transform.Find("Segments");
+                    _segmentParent = _trackParent.transform.Find("Segments"); // 세그먼트의 부모 오브젝트
             }
-            else
+            else // 리플레이 모드
             {
                 _trackParent.GetComponent<BaseTrack>().ResetBikeToSpawnPoint();
             }
 
             _previousSegment = null;
-            
+
+            // 트랙의 세그먼트들을 Stack으로 변환
             _segmentStack = new Stack<GameObject>(_segments);
             
             SpawnSegment(initialSegmentAmount);
             
             if (!_isReplayEnabled)
-                RaceEventBus.Publish(RaceEventType.COUNTDOWN);
+                RaceEventBus.Publish(RaceEventType.COUNTDOWN); // 이벤트 버스
         }
 
+        // 정해진 갯수만큼 세그먼트 생성
         private void SpawnSegment(int amount)
         {
             for (int i = 0; i < amount; i++)
@@ -146,11 +151,13 @@ namespace FPP.Scripts.Controllers
             }
         }
 
+        // 다음 세그먼트 생성
         public void LoadNextSegment()
         {
             SpawnSegment(incrementalSegmentAmount);
         }
 
+        // BikeController로 부터 이벤트 발생 (옵저버 패턴)
         public override void Notify(Subject subject)
         {
             BikeController bikeController = subject.GetComponent<BikeController>();

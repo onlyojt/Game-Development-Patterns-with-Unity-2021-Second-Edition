@@ -1,7 +1,14 @@
 namespace Chapter.Decorator
 {
     public class Weapon : IWeapon
-    { 
+    {
+        private readonly WeaponConfig _config;
+
+        public Weapon(WeaponConfig weaponConfig)
+        {
+            _config = weaponConfig;
+        }
+
         public float Range
         {
             get { return _config.Range; }
@@ -22,11 +29,5 @@ namespace Chapter.Decorator
             get { return _config.Cooldown; }
         }
         
-        private readonly WeaponConfig _config;
-
-        public Weapon(WeaponConfig weaponConfig)
-        {
-            _config = weaponConfig;
-        }
     }
 }

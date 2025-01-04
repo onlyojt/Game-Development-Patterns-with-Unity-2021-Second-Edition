@@ -6,8 +6,7 @@ namespace Chapter.EventBus
     public class RaceEventBus
     {
         private static readonly 
-            IDictionary<RaceEventType, UnityEvent> 
-            Events = new Dictionary<RaceEventType, UnityEvent>();
+            IDictionary<RaceEventType, UnityEvent> Events = new Dictionary<RaceEventType, UnityEvent>();
 
         public static void Subscribe
             (RaceEventType eventType, UnityAction listener) {

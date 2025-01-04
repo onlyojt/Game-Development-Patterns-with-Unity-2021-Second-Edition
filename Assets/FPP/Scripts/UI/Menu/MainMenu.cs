@@ -23,18 +23,19 @@ namespace FPP.Scripts.UI.Menu
         void Awake()
         {
             _saveSystem = new SaveSystem();
-            _player = _saveSystem.LoadPlayer();
+            _player = _saveSystem.LoadPlayer(); // 저장된 플레이어 정보 로드
         }
 
         void Start()
         {
+            // 각종 정보 표시
             DisplayPlayerInfo();
             DisplayVersionNumber();
         }
 
         public void Play()
         {
-            SceneManager.LoadScene("RaceTrack");
+            SceneManager.LoadScene("RaceTrack"); // Play 버튼-> RaceTrack씬 로드
         }
 
         public void Exit()
@@ -44,7 +45,7 @@ namespace FPP.Scripts.UI.Menu
 
         public void Reset()
         {
-            _saveSystem.DeleteSave();
+            _saveSystem.DeleteSave(); // Reset 버튼 -> 플레이어 정보 삭제, Registration씬 로드
             SceneManager.LoadScene("Registration");
         }
 

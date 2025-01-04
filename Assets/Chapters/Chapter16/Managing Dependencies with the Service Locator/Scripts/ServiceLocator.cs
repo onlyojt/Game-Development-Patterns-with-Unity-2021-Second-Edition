@@ -5,9 +5,7 @@ namespace Chapter.ServiceLocator
 {
     public static class ServiceLocator
     {
-        private static readonly 
-            IDictionary<Type, object> Services = 
-                new Dictionary<Type, Object>();
+        private static readonly IDictionary<Type, object> Services = new Dictionary<Type, Object>();
 
         public static void RegisterService<T>(T service)
         {

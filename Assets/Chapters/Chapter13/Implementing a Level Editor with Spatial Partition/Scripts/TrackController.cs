@@ -88,11 +88,8 @@ namespace Chapter.SpatialPartition
 
                     segment.transform.position = _currentPosition;
                     
-                    segment.AddComponent<Segment>(); 
-                    
-                    segment.GetComponent<Segment>().
-                        trackController = this;
-                    
+                    segment.AddComponent<Segment>().trackController = this; 
+                                        
                     _prevSeg = segment.transform;
                 }
             }

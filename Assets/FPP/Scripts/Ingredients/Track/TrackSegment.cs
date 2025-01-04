@@ -9,6 +9,7 @@ namespace FPP.Scripts.Ingredients.Track
 
         private void OnDestroy()
         {
+            // 다음 세그먼트 로드
             if (trackController)
                 trackController.LoadNextSegment();
         }

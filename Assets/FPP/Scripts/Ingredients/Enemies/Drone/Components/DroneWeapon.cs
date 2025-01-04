@@ -20,19 +20,21 @@ namespace FPP.Scripts.Ingredients.Enemies.Drone.Components
         {
             _strength = strength;
             
-            _line = gameObject.AddComponent<LineRenderer>();
+            _line = gameObject.AddComponent<LineRenderer>();    // 빔(선)을 화면에 그리는 데 사용
             _line.startWidth = 0.1f;
-            _line.endWidth = 0.1f;
-            _line.useWorldSpace = true;
+            _line.endWidth = 0.1f; // 빔의 시작과 끝의 너비를 각각 0.1
+            _line.useWorldSpace = true; // 선이 월드 좌표계에서 렌더링
             _line.material = new Material(Shader.Find("Sprites/Default"));
             _line.startColor = Color.red;
 
-            _beamDirection = transform.TransformDirection(Vector3.back) * DroneController.beamDistance;
-            _beamDirection = Quaternion.Euler(DroneController.beamAngle, 0.0f, 0f) * _beamDirection;
+            _beamDirection = transform.TransformDirection(Vector3.back) * DroneController.beamDistance; // 빔 방향 계산
+            _beamDirection = Quaternion.Euler(DroneController.beamAngle, 0.0f, 0f) * _beamDirection; // 빔 방향에 beamAngle만큼 회전을 적용
 
+            // 타겟 오브젝트 생성
             _target = new GameObject("Target", typeof(BoxCollider));
             _target.transform.SetParent(transform);
 
+            // 타겟 위치 설정
             Vector3 pos = Quaternion.AngleAxis(DroneController.beamAngle, Vector3.right) * Vector3.back *
                           DroneController.beamDistance;
             _target.transform.localPosition = pos;

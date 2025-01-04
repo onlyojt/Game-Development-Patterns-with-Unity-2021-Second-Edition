@@ -11,7 +11,7 @@ namespace FPP.Scripts.UI.Window
     {
         [SerializeField] private string defaultPlayerName;
         
-        public void RegisterPlayer(InputField playerName)
+        public void RegisterPlayer(InputField playerName) // 게임실행 화면에서 등록버튼 클릭
         {
             SaveSystem saveSystem = new SaveSystem();
             Player player = saveSystem.LoadPlayer();

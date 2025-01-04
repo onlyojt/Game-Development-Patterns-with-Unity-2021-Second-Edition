@@ -14,7 +14,7 @@ namespace FPP.Scripts.Ingredients.Bike
 {
     public class BikeController : Subject, IBikeElement, IDamageable, IDestructible
     {
-        public BikeBlueprint bikeBlueprint;
+        public BikeBlueprint bikeBlueprint; // 바이크 성능 기본값
         
         public int SpeedPenalty { private get; set; }
         public BikeSensor BikeSensor { get; private set; }

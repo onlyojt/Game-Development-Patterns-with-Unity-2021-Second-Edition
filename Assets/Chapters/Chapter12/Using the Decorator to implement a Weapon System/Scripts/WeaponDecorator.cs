@@ -5,8 +5,8 @@ namespace Chapter.Decorator
         private readonly IWeapon _decoratedWeapon;
         private readonly WeaponAttachment _attachment;
 
-        public WeaponDecorator(
-            IWeapon weapon, WeaponAttachment attachment) {
+        public WeaponDecorator(IWeapon weapon, WeaponAttachment attachment) 
+        {
             
             _attachment = attachment;
             _decoratedWeapon = weapon;
