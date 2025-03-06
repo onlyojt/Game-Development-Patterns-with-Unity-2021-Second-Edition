@@ -81,7 +81,7 @@ namespace FPP.Scripts.Managers
             // 자주 사용하는 아이콘 이름 리스트
             string[] commonIconNames = new string[]
             {
-"d_FolderOpened Icon"
+"d_MeshFilter Icon"
             };
 
 
